@@ -1,0 +1,109 @@
+<section class="dark:bg-gray-950 py-10">
+    <div class="container mx-auto">
+        <div class="mx-auto relative flex justify-between align-baseline my-4">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
+                <i class="fa-solid fa-magnifying-glass text-[15px] text-gray-500 dark:text-gray-300"></i>
+            </div>
+            <input type="search" id="default-search" [(ngModel)]="text"
+                class="block w-[50%] p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 
+      
+      dark:bg-gray-900 dark:border-gray-900 dark:placeholder-gray-400 dark:text-white" placeholder="Search..." />
+
+            <div class="relative">
+                <button id="dropdownTitleButton" data-dropdown-toggle="dropdownTitle" data-dropdown-trigger="click"
+                    class="text-white bg-red-500 hover:bg-red-800  focus:outline-none 
+        font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center 
+        " type="button">
+                    Sort by Title
+                    <svg class="w-2.5 h-2.5 ms-3" viewBox="0 0 10 6">
+                        <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" />
+                    </svg>
+                </button>
+                <div id="dropdownTitle"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTitleButton">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                (click)="selectTitleSortOption('asc'); $event.preventDefault()">
+                                (A-Z)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                (click)="selectTitleSortOption('desc'); $event.preventDefault()">
+                                (Z-A)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="relative">
+                <button id="dropdownPriceButton" data-dropdown-toggle="dropdownPrice" data-dropdown-trigger="click"
+                    class="text-white bg-red-500 hover:bg-red-800  focus:outline-none 
+        font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center 
+        " type="button">
+                    Sort by Price
+                    <svg class="w-2.5 h-2.5 ms-3" viewBox="0 0 10 6">
+                        <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" />
+                    </svg>
+                </button>
+                <div id="dropdownPrice"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownPriceButton">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                (click)="selectPriceSortOption('desc'); $event.preventDefault()">
+                                (High to Low)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                (click)="selectPriceSortOption('asc'); $event.preventDefault()">
+                                (Low to High)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 my-6">
+            @for (Prod of ProductList | sort:sortProperty:sortOrder:isNumberSort | search:text ; track Prod.id) {
+            <div class="Card p-4 rounded-lg shadow bg-white dark:bg-gray-900">
+                <div>
+                    <img class="w-full h-[250px] object-contain" [src]="Prod.image" alt="{{Prod.title}}" />
+                    <h1 class="font-medium text-gray-800 dark:text-white">{{ Prod.title.split(' ', 2).join(' ') }}</h1>
+                    <h2 class="my-2 text-black dark:text-white">${{ Prod.price }}</h2>
+                    <p class="border-b-2 border-gray-200 dark:border-gray-600"></p>
+                    <div class="Free flex justify-between my-3">
+                        <p class="text-gray-600 dark:text-gray-300"><i class="fa-solid fa-truck"></i> Free Shipping</p>
+                        <p class="text-gray-600 dark:text-gray-300"><i class="fa-solid fa-gift"></i> Free Gift</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <button [routerLink]="['/Details', Prod.id]"
+                        class="btn-main bg-red-500 hover:bg-red-800 text-white rounded-full py-1 px-4">
+                        View Deal <i class="fa-solid fa-arrow-pointer fa-rotate-90"></i>
+                    </button>
+                    <div class="flex items-center">
+                        <div class="HeartIcons border-red-600 text-red-600 dark:text-red-400">
+                            <div class="HeartIcon">
+                                <i class="fa-solid fa-heart-circle-plus me-3"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-center Star">
+                            <i class="fa-solid fa-star text-yellow-300 me-1"></i>
+                            <span class="text-gray-800 dark:text-white">{{ Prod.rating.rate }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

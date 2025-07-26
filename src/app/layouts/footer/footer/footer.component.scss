@@ -1,0 +1,33 @@
+.FIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.08);
+    width: 1.875rem;
+    height: 1.875rem;
+    border-radius: 50%;
+    color: #535353;
+    margin-right: .625rem;
+    transition: all ease 0.3s;
+}
+
+.Facebook:hover {
+    background-color: #3b5998;
+    color: white;
+}
+
+.instagram:hover {
+    background: #125688 !important;
+    color: white;
+}
+
+.tumblr:hover {
+    background: #32506d !important;
+    color: white;
+}
+
+.twitter:hover {
+    background: #00aced !important;
+    color: white;
+}

@@ -1,0 +1,31 @@
+<section class="dark:bg-gray-950 py-10">
+    <div
+        class="DeatilsCard grid lg:grid-cols-2 sm:grid-cols-1  mx-auto dark:rounded-xl shadow-md p-4">
+        <div class="DetailsImg flex justify-center items-center">
+            <img class="w-1/2" [src]="ProductDetails.image" alt="{{ProductDetails.title}}">
+        </div>
+
+        <div class="DetailsContent text-gray-800 dark:text-white me-5">
+            <h3 class="text-gray-600 dark:text-gray-400">{{ ProductDetails.category }}</h3>
+
+            <h1 class="my-5 text-xl font-semibold">{{ ProductDetails.title }}</h1>
+
+            <div class="DeatailsPrice flex justify-between items-baseline">
+                <p class="text-lg text-gray-800 dark:text-white">${{ ProductDetails.price }}</p>
+
+                <div class="flex items-center Star">
+                    <i class="fa-solid fa-star text-yellow-300 me-1"></i>
+                    <span class="text-gray-700 dark:text-gray-200">{{ ProductDetails.rating.rate }}</span>
+                </div>
+            </div>
+
+            <p class="border-b-2 border-gray-200 dark:border-gray-600 my-5"></p>
+
+            <h3 class="text-base font-medium">Description:</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mt-2">
+                {{ ProductDetails.description }}
+            </p>
+        </div>
+    </div>
+
+</section>
